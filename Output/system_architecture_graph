@@ -1,0 +1,30 @@
+// System Architecture
+digraph {
+	rankdir=LR
+	node [color=grey fontcolor=white fontname=Verdana shape=record style=filled]
+	edge [color=black weight=2]
+	subgraph cluster1 {
+		color=blue label="Frontend Cluster"
+		frontend [label=Frontend]
+		frontend_dataflow [label="Frontend Dataflow"]
+		frontend -> frontend_dataflow [label="Frontend to Frontend"]
+	}
+	subgraph cluster2 {
+		color=blue label="Backend Cluster"
+		backend [label=Backend]
+		backend_dataflow [label="Backend Dataflow"]
+		backend -> backend_dataflow [label="Backend to Backend"]
+	}
+	subgraph cluster3 {
+		color=blue label="Databases Cluster"
+		databases [label=Databases]
+		db_dataflow [label="Database Dataflow"]
+		databases -> db_dataflow [label="Databases to Backend"]
+	}
+	api_gateway [label="API Gateway" color=red fontcolor=white fontname=Verdana shape=hexagon]
+	api_dataflow [label="API Gateway Dataflow"]
+	api_gateway -> api_dataflow [label="API Gateway to Frontend"]
+	third_party_auth [label="Third-party Auth" color=orange fontcolor=white fontname=Verdana shape=cylinder]
+	third_party_auth_dataflow [label="Third-party Auth Dataflow"]
+	third_party_auth -> third_party_auth_dataflow [label="Third-party Auth to Frontend"]
+}
